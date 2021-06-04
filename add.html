@@ -23,7 +23,7 @@
       <h1>Add worker</h1>
       <form>
         <label for="workerID">ID:</label><br />
-        <input type="text" id="workerID" name="fname" required/>
+        <input type="number" id="workerID" name="fname" required />
 
         <label for="fname">First name:</label><br />
         <input type="text" id="fname" name="fname" value="" required/>
@@ -41,23 +41,23 @@
         <input type="text" id="gender" name="gender" value="" required/>
 
         <label for="phone-1">Phone-1:</label><br />
-        <input type="text" id="phone-1" name="phone-1" value="" required/>
+        <input type="tel" id="phone-1" name="phone-1" value="" placeholder="123-45-678"  required/>
 
         <label for="phone-2">Phone-2:</label><br />
-        <input type="text" id="phone-2" name="phone-2" value="" required/>
+        <input type="tel" id="phone-2" name="phone-2" value="" placeholder="123-45-678"  required/>
 
         <label for="salary">Salary:</label><br />
-        <input type="text" id="salary" name="salary" value="" required/>
+        <input type="number" id="salary" name="salary" value=""  required/>
 
         <label for="manger">Manager ID:</label><br />
-        <input type="text" id="manger" name="manger" value="" required/>
+        <input type="number" id="manger" name="manger" value="" required/>
 
-        <input
+        <button
           class="button button4"
-          type="submit"
+          type="button"
           id="addWorker"
           value="Submit"
-        />
+        >Submit</button>
       </form>
       <p id="warn">Please Enter data correctly!!</p>
     </div>

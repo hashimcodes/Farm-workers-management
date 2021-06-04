@@ -32,6 +32,26 @@ dB.connect((err)=>{
     }
 });
 
+
+//check data
+statusid = {};
+app.post('/idcheck', (req, res) => {
+    worker_id = req.body.worker_id;
+    let query1 = dB.query('select * from workers where worker_id = ?;', [worker_id], (err, result, fields) => {
+        if(result.length >0){
+            statusid.flag = 1;
+        } 
+        else{
+            statusid.flag = 0;
+        }
+        res.end();
+    });
+});
+
+app.get('/check',(req, res) => {
+    res.send(statusid);
+});
+
 //registeration
 app.post('/reg',(req, res)=>{
     let worker_id = req.body.worker_id;
@@ -45,17 +65,25 @@ app.post('/reg',(req, res)=>{
     let mangerId= req.body.mangerId;
     let gender = req.body.gender;
 
-    let query = dB.query('INSERT INTO workers (worker_id, first_name, middle_name, last_name, section_id, gender, phone1, phone2, salary, manager_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
-    , [worker_id, firstName, middleName, lastName, section_id, gender, phone_1, phone_2, salary, mangerId], (err, result)=>{
-        if(err) {
+
+    let query = dB.query('select * from workers where worker_id = ?', [worker_id], (err, result, fields) => {
+        if (result.length > 0) {
+            console.log('existed');
             res.redirect("/add.html");
-            console.log('error');
-            throw err;
         } else {
-            res.redirect("/add.html");
-            console.log('record added...');
-        }
-    });
+            let query2 = dB.query('INSERT INTO workers (worker_id, first_name, middle_name, last_name, section_id, gender, phone1, phone2, salary, manager_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+            , [worker_id, firstName, middleName, lastName, section_id, gender, phone_1, phone_2, salary, mangerId], (err, result)=>{
+            if(err) {
+                res.redirect("/add.html");
+                console.log('error');
+                throw err;
+            } else {
+                res.redirect("/add.html");
+                console.log('record added...');
+            }
+        });
+    }
+    });     
 });
 
 app.post('/update',(req, res)=>{

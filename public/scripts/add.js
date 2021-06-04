@@ -11,15 +11,46 @@ addWorkBotton.addEventListener('click', async ()=>{
     const salary = document.getElementById('salary').value;
     const mangerId = document.getElementById('manger').value;
 
-
-    if(worker_id != '' && firstName != '' && lastName != '' && middleName != '' && lastName != '' && section_id != '' && gender != ''
+    await idToServer(worker_id);
+    const data =await getcheck();
+    if(data.flag == 1){
+       alert("The worker is already exist !!");
+    }
+    else if (data.flag == 0)
+    {
+        if(worker_id != '' && firstName != '' && lastName != '' && middleName != '' && lastName != '' && section_id != '' && gender != ''
         && phone_1 != '' && phone_2 != '' && salary != '' && mangerId != ''){
             regDataToServer(worker_id, firstName,lastName,middleName,section_id, gender,phone_1,phone_2,salary, mangerId);
+            alert("The worker is added !!");
         } else{
             alert("Please fill data correctly!!");
         }
-    //regDataToServer(worker_id, firstName,lastName,middleName,section_id, gender,phone_1,phone_2,salary, mangerId);
-});
+    }
+   
+}
+);
+
+const idToServer = async (worker_id)=>{ 
+    await fetch('/idcheck',{
+    method : 'POST',
+    credentials:'same-origin',
+    headers:{
+        "content-Type":"application/json"
+    },
+    body:JSON.stringify({
+        worker_id,
+    })
+})};
+
+number = {};
+const getcheck = async ()=>{ 
+    const data = await fetch('/check',{
+    method : 'GET',
+    credentials:'same-origin',
+})
+number = await data.json();
+return number;
+};
 
 
 const regDataToServer = async (worker_id, firstName,lastName,middleName,section_id, gender,phone_1,phone_2,salary, mangerId)=>{ 
