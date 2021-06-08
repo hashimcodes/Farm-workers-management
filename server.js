@@ -118,7 +118,7 @@ app.post('/id',(req, res)=>{
 //reports
 app.get('/show', (req, res) => {
    
-    console.log(worker_id);
+    //console.log(worker_id);
     let query1 = dB.query('select * from workers where worker_id = ?;', [worker_id], (err, result, fields) => {
         let sender1 = {};
         sender1.data = result;

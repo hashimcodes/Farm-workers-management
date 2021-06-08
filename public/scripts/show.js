@@ -32,11 +32,12 @@ let code = '<label for="">Worker Info</label>' +
                 `<p>Middle Name: ${number.data[0].middle_name}</p>` +
                 `<p>Last Name: ${number.data[0].last_name}</p>` +
                 `<p>Section ID: ${number.data[0].section_id}</p>` +
+                `<p>Gender: ${number.data[0].gender}</p>` +
                 `<p>Phone 1: ${number.data[0].phone1}</p>` +
                 `<p>Phone 2: ${number.data[0].phone2}</p>` +
                 `<p>Salary: ${number.data[0].salary}</p>` +
                 `<p>Manager ID: ${number.data[0].manager_id}</p>` +
-                '<p>-----------------------------------------------------------------------</p>' +
+                '<hr>' +
                 '<br><br>';
     document.getElementById('clintNumDiv').innerHTML = code;
 return number;
@@ -74,11 +75,12 @@ for (let i = 0; i < number.data.length; i++) {
                 `<p>Middle Name: ${number.data[i].middle_name}</p>` +
                 `<p>Last Name: ${number.data[i].last_name}</p>` +
                 `<p>Section ID: ${number.data[i].section_id}</p>` +
+                `<p>Gender: ${number.data[i].gender}</p>` +
                 `<p>Phone 1: ${number.data[i].phone1}</p>` +
                 `<p>Phone 2: ${number.data[i].phone2}</p>` +
                 `<p>Salary: ${number.data[i].salary}</p>` +
                 `<p>Manager ID: ${number.data[i].manager_id}</p>` +
-                '<p>-----------------------------------------------------------------------------------------------------------------------</p>' +
+                '<hr>' +
                 '</div>';
                 
                 console.log('-----------record----------');
